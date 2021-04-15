@@ -74,8 +74,15 @@ change include to
 
 see https://stackoverflow.com/questions/2561368/illegal-token-on-right-side-of
 added/editted brackets around occurances of max, for example:
-
-`(std::numeric_limits<T>::max)()`
+```
+std::numeric_limits<T>::max()
+std::max
+```
+changed to 
+```
+(std::numeric_limits<T>::max)()
+(std::max)
+```
 
 for all uses of max and min in the below:
 C:\Program Files\OpenVDB\include\openvdb\points\AttributeArray.h
@@ -84,3 +91,5 @@ C:\Program Files\OpenVDB\include\openvdb\points\IndexFilter.h
 C:\Program Files\OpenVDB\include\openvdb\points\PointGroup.h
 C:\Program Files\OpenVDB\include\openvdb\points\PointDataGrid.h
 C:\Program Files\OpenVDB\include\openvdb\points\PointConversion.h
+
+Depending on your errors, you might make the changes yourself, or you can replace the OpenVDB contents in Program Files with the OpenVDB.zip in repo root folder
