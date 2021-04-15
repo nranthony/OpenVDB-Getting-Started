@@ -96,12 +96,12 @@ mMax(-(std::numeric_limits<Real>::max)()) {}
 ```
 
 for all uses of max and min in the below:
-
+```
 C:\Program Files\OpenVDB\include\openvdb\points\AttributeArray.h
 C:\Program Files\OpenVDB\include\openvdb\points\AttributeSet.h
 C:\Program Files\OpenVDB\include\openvdb\points\IndexFilter.h
 C:\Program Files\OpenVDB\include\openvdb\points\PointGroup.h
 C:\Program Files\OpenVDB\include\openvdb\points\PointDataGrid.h
 C:\Program Files\OpenVDB\include\openvdb\points\PointConversion.h
-
+```
 Depending on your errors, you might make the changes yourself, or you can replace the OpenVDB contents in Program Files with the OpenVDB.zip in repo root folder
