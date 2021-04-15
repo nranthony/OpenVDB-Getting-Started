@@ -1,7 +1,15 @@
 # OpenVDB-Getting-Started
-Steps taken to get from OpenVDB source to simple compiled V++ application
+Steps taken to get from OpenVDB source to simple compiled C++ application
 
 This repo serves as a record, and hopefully a reference, for the steps taken to get to a simple C++ app using the OpenVDB library. https://github.com/AcademySoftwareFoundation/openvdb
+
+## tl;dr
+- Download/clone repo
+- Overwrite or create OpenVDB folder in Program Files folder with contents of .zip
+- open .sln in openvdb_test folder
+- Right click project and Build
+- Currently only works for Release (not Debug)
+- Ctrl - F5 to run without debugging
 
 ### Download/setup https://github.com/microsoft/vcpkg:
 ```
