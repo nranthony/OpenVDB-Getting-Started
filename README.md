@@ -3,7 +3,7 @@ Steps taken to get from OpenVDB source to simple compiled V++ application
 
 This repo serves as a record, and hopefully a reference, for the steps taken to get to a simple C++ app using the OpenVDB library. https://github.com/AcademySoftwareFoundation/openvdb
 
-### Download/setup https://github.com/microsoft/vcpkg:
+#### Download/setup https://github.com/microsoft/vcpkg:
 ```
 git clone https://github.com/microsoft/vcpkg
 cd C:\dev\vcpkg
@@ -14,7 +14,7 @@ and install for Visual Studio (assuming already installed with C++ dev option ch
 vcpkg integrate install
 ```
 
-### Prepare the vcpkg libraries for OpenVDB https://github.com/microsoft/vcpkg:
+#### Prepare the vcpkg libraries for OpenVDB :
 ```
 vcpkg install zlib:x64-windows
 vcpkg install blosc:x64-windows
@@ -30,7 +30,7 @@ vcpkg install openexr:x64-windows
 ```
 Note, here I've added `openexr` to the list detailed on the OpenVDB github page.  Also note that if you copy paste, double check the last line is executed before moving on.
 
-### Starting from OpenVDB 8.0.1 release here: https://github.com/AcademySoftwareFoundation/openvdb/releases which I've downloaded/cloned into C:\dev\
+#### Starting from OpenVDB 8.0.1 release here: https://github.com/AcademySoftwareFoundation/openvdb/releases which I've downloaded/cloned into C:\dev\
 
 Using cmd (Run as Administrator, not just logged into an Administrator account; you should see "Adminsitrator" in the cmd window title):
 ```
@@ -43,8 +43,44 @@ cmake --build . --parallel 4 --config Release --target install
 ```
 Again, double check the last line runs.
 
-### Create console project in VS2019
+#### Create console project in VS2019
 
 This project is available in openvdb_test folder.
+Created console app, pasted the "Hello, World" code from the OpenVDB documentation examples page:
+https://www.openvdb.org/documentation/doxygen/codeExamples.html#sPointsHelloWorld
 
+Add "C:\Program Files\OpenVDB\include" to Properties -> VC++ Directories -> Include Directories
 
+Folder created in solution directory of openvdb_test called "libs", and both openvdb .lib files from the "openvdb-8.0.1\build\openvdb\openvdb\Release" folder were copied over.
+Add the below to Properties -> Linker -> Input -> Additional Dependencies
+$(SolutionDir)libs\openvdb.lib
+$(SolutionDir)libs\libopenvdb.lib
+
+For runtime required dll's, copy all dll's in "openvdb-8.0.1\build\openvdb\openvdb\Release" to "openvdb_test\x64\Release"
+Here openvdb-8.0.1 is the cloned release in C:\dev\ and openvdb_test is the folder in the root of this repo.  The executable openvdb_test.exe is created in "openvdb_test\x64\Release"
+
+A list of errors were found in 7 different .h files in:
+"C:\Program Files\OpenVDB\include\openvdb\math\"
+and
+"C:\Program Files\OpenVDB\include\openvdb\points"
+and manually edited and saved.  Requires admin permissions in app used to edit files.  I like VSCode as it offers to run in Admin if it gets stuck.
+
+"C:\Program Files\OpenVDB\include\openvdb\math\Mat.h"
+
+add
+`#define _USE_MATH_DEFINES`
+change include to
+`#include <math.h>`
+
+see https://stackoverflow.com/questions/2561368/illegal-token-on-right-side-of
+added/editted brackets around occurances of max, for example:
+
+`(std::numeric_limits<T>::max)()`
+
+for all uses of max and min in the below:
+C:\Program Files\OpenVDB\include\openvdb\points\AttributeArray.h
+C:\Program Files\OpenVDB\include\openvdb\points\AttributeSet.h
+C:\Program Files\OpenVDB\include\openvdb\points\IndexFilter.h
+C:\Program Files\OpenVDB\include\openvdb\points\PointGroup.h
+C:\Program Files\OpenVDB\include\openvdb\points\PointDataGrid.h
+C:\Program Files\OpenVDB\include\openvdb\points\PointConversion.h
