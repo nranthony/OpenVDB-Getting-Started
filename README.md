@@ -96,6 +96,7 @@ mMax(-(std::numeric_limits<Real>::max)()) {}
 ```
 
 for all uses of max and min in the below:
+
 C:\Program Files\OpenVDB\include\openvdb\points\AttributeArray.h
 C:\Program Files\OpenVDB\include\openvdb\points\AttributeSet.h
 C:\Program Files\OpenVDB\include\openvdb\points\IndexFilter.h
