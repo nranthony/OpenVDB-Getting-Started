@@ -12,6 +12,7 @@ This repo serves as a record, and hopefully a reference, for the steps taken to 
 - open .sln in openvdb_test folder
 - Right click project and Build
 - Currently only works for Release (not Debug)
+  - ![image](https://user-images.githubusercontent.com/16306836/114934450-e0e51000-9e07-11eb-8e2a-1925485e8f7b.png)
 - Ctrl - F5 to run without debugging
 
 ### Download/setup https://github.com/microsoft/vcpkg:
